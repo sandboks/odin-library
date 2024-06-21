@@ -12,6 +12,39 @@
     -->
 </head>
 <body>
-    
+    <dialog id="addNewBookDialog">
+        <button autofocus>Close</button>
+        <h1>Add new book</h1>
+        <p>This modal dialog has a groovy backdrop!</p>
+
+        <form method="dialog">
+            <p>
+                <label>
+                    Title:
+                    <input type="text" name="title" minlength="1" required>
+                </label>
+            </p>
+            <p>
+                <label>
+                    Author:
+                    <input type="text" required>
+                </label>    
+            </p>
+            <p>
+                <label>
+                    Total pages:
+                    <input type="number" required>
+                </label>
+            </p>
+            <p>
+                <label>
+                    Have read:
+                    <input type="checkbox">
+                </label>    
+            </p>
+        </form>
+        <button id="submitButton" value="default">Submit</button>
+    </dialog>
+    <button id="addNewBookOpenDialog">+</button>
 </body>
 </html>
