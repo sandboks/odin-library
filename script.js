@@ -1,3 +1,5 @@
+//https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
+
 const myLibrary = [];
 
 function Book(title, author, pageCount, hasRead) {
@@ -14,8 +16,9 @@ function Book(title, author, pageCount, hasRead) {
 function addBookToLibrary(title, author, pageCount, hasRead) {
   let book = new Book(title, author, pageCount, hasRead);
   myLibrary.push(book);
+  insertNewBookHTML(book);
 
-  book.info();
+  //book.info();
 }
 
 addBookToLibrary("The Hoobbit", "J.R.R. Tolkien", 295, true);
@@ -25,8 +28,16 @@ myLibrary.forEach((book) => {
   book.info();
 });
 
+// BUTTON LISTERNERS
+
+const testButton = document.getElementById("testThing");
+testButton.addEventListener("click", () => {
+  insertNewBookHTML(new Book("TITLE", "AUTHOR", 1, false));
+});
+
 // DOM manipulation
 
+// DIALOG
 const dialog = document.getElementById("addNewBookDialog");
 const showButton = document.getElementById("addNewBookOpenDialog");
 const closeButton = document.querySelector("dialog button");
@@ -49,3 +60,29 @@ submitButton.addEventListener("click", (event) => {
 
   dialog.close();
 });
+
+// INSERT NEW HTML
+
+function insertNewBookHTML(book) {
+  var toAdd = document.createDocumentFragment();
+  var newDiv = document.createElement('div');
+  newDiv.classList.add(`bottomSectionProjectsPanel`);
+  newDiv.innerHTML = 
+  `
+  <div class="bottomSectionProjectsPanelContent">
+      <h3>${book.title} / ${book.author}</h3>
+      <p>${book.pageCount} pages</p>
+      <div class="bottomSectionProjectsPanelIcons">
+          <a href="https://sandboks.github.io/odin-calculator/">
+              <img src="img/eye-outline.svg">
+          </a>
+          <a href="https://github.com/sandboks/odin-calculator">
+              <img src="img/github-mark.svg">
+          </a>
+      </div>
+  </div>`;
+  toAdd.appendChild(newDiv);
+  document.querySelector('.bottomSectionProjectsGrid').appendChild(toAdd);
+}
+
+

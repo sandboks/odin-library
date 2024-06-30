@@ -6,8 +6,8 @@
     <title>Odin Library</title>
 
     <script src="script.js" defer></script>
-    <!--
     <link rel="stylesheet" href="./style.css">
+    <!--
     <link rel="icon" href="img/hexagon-slice-3.svg">
     -->
 </head>
@@ -45,6 +45,79 @@
         </form>
         <button id="submitButton" value="default">Submit</button>
     </dialog>
-    <button id="addNewBookOpenDialog">+</button>
+
+
+    <div class="gridContainer">
+        
+        <div class="mainSection">
+            <div class="topBanner">
+                <div class="topBannerHeader">
+                    <div class="topBannerSearch">
+                        <img src="img/magnify.svg" class="avatarAlertSectionSmall">
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="topBannerAlerts">
+                        <div class="controlsRow">
+                            <!--
+                            <label class="switch">
+                                <input type="checkbox" id="darkModeToggle">
+                                <span class="slider round"></span>
+                            </label>
+                            -->
+                            <div class="darkModeContainer" id="darkModeToggle">
+                                <img src="img/moon-waning-crescent.svg" class="avatarAlertSectionSmall" id="darkmodeIcon">
+                            </div>
+                            <div class="colorPickWrapper">
+                                <input type="color" id="colorPicker" name="customColor" value="#F28E1C">
+                            </div>
+                        </div>
+                        
+                        <img src="img/bell-outline.svg" class="avatarAlertSectionSmall">
+                        <img src="img/avatar.png" class="avatarAlertSection">
+                        <h3>Sand Box</h3>
+                    </div>
+                </div>
+                <div class="topBannerMain">
+                    <div class="topBannerMainLeft">
+                        <img src="img/avatar.png">
+                        <div class="topBannerMainLeftUsername">
+                            <p>Hi there,</p>
+                            <h2>Sand Box (@sandboks)</h2>
+                        </div>
+                    </div>
+                    <div class="topBannerMainRight">
+                        <button id="addNewBookOpenDialog">New Book</button>
+                        <button id="testThing">Do THING</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bottomSection">
+                <div class="bottomSectionProjects">
+                    <div>
+                        <h3>Your projects:</h3>
+                        <div class="bottomSectionProjectsGrid">
+                            <!--
+                            <div class="bottomSectionProjectsPanel">
+                                <div class="bottomSectionProjectsPanelContent">
+                                    <h3>TITLE / AUTHOR</h3>
+                                    <p>20 pages</p>
+                                    <div class="bottomSectionProjectsPanelIcons">
+                                        <a href="https://sandboks.github.io/odin-calculator/">
+                                            <img src="img/eye-outline.svg">
+                                        </a>
+                                        <a href="https://github.com/sandboks/odin-calculator">
+                                            <img src="img/github-mark.svg">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </body>
 </html>
