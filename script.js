@@ -2,6 +2,7 @@
 
 const myLibrary = [];
 var booksMade = 0;
+var booksDeleted = 0;
 
 function Book(title, author, pageCount, hasRead) {
   this.title = title;
@@ -10,6 +11,8 @@ function Book(title, author, pageCount, hasRead) {
   this.hasRead = hasRead;
 
   this.id = 0;
+  this.HtmlNode;
+  this.readIconNode;
 
   this.info = function() {
     console.log(`${this.title} by ${this.author}, ${this.pageCount}, ${this.hasRead ? "has read" : "has not read"}`);
@@ -33,7 +36,7 @@ myLibrary.forEach((book) => {
 
 const testButton = document.getElementById("testThing");
 testButton.addEventListener("click", () => {
-  insertNewBookHTML(new Book("TITLE", "AUTHOR", 1, false));
+  addBookToLibrary("TITLE", "AUTHOR", 1, false);
 });
 
 // DOM manipulation
@@ -57,7 +60,7 @@ closeButton.addEventListener("click", () => {
 submitButton.addEventListener("click", (event) => {
   //event.preventDefault(); // We don't want to submit this fake form
   let inputs = document.querySelectorAll('input');
-  addBookToLibrary(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value);
+  addBookToLibrary(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].checked);
 
   dialog.close();
 });
@@ -68,6 +71,7 @@ const libraryGridContainer = document.querySelector('.bottomSectionProjectsGrid'
 
 function insertNewBookHTML(book) {
   var newPanelDiv = document.createElement('div');
+  book.HtmlNode = newPanelDiv;
   newPanelDiv.classList.add(`bottomSectionProjectsPanel`);
 
   var closeButtonDiv = document.createElement('div');
@@ -77,8 +81,9 @@ function insertNewBookHTML(book) {
   closeButtonImg.src = "img/close-circle-outline.svg";
   closeButtonImg.classList.add("panelCloseButton");
   closeButtonImg.addEventListener("click", () => {
-    console.log("hello");
-    libraryGridContainer.removeChild(newPanelDiv);
+    DeleteBook(book);
+    //console.log("hello");
+    //libraryGridContainer.removeChild(newPanelDiv);
   });
 
   closeButtonDiv.appendChild(closeButtonImg);
@@ -91,15 +96,25 @@ function insertNewBookHTML(book) {
   <h4>${book.author}</h4>
   <p>${book.pageCount} pages</p>
   <p>ID: ${book.id}</p>
-  <div class="bottomSectionProjectsPanelIcons">
-      <a href="https://sandboks.github.io/odin-calculator/">
-          <img src="img/cog.svg">
-      </a>
-      <a href="https://github.com/sandboks/odin-calculator">
-          <img src="img/star.svg">
-      </a>
-  </div>
   `;
+
+
+  var panelBottomIcons = document.createElement(`div`);
+  panelBottomIcons.classList.add("bottomSectionProjectsPanelIcons");
+  var editIcon = document.createElement('img');
+  editIcon.src = "img/text-box-edit-outline.svg";
+
+  var readIcon = document.createElement('img');
+  book.readIconNode = readIcon;
+  readIcon.src = `img/sticker-check${book.hasRead ? "" : "-outline"}.svg`;
+  readIcon.addEventListener('click', () => {
+    ToggleReadBook(book);
+  });
+  panelBottomIcons.appendChild(editIcon);
+  panelBottomIcons.appendChild(readIcon);
+
+  panelContentDiv.appendChild(panelBottomIcons);
+
 
   newPanelDiv.appendChild(closeButtonDiv);
   newPanelDiv.appendChild(panelContentDiv);
@@ -132,8 +147,15 @@ function insertNewBookHTML(book) {
   //darkModeSwitch.addEventListener("click", ToggleDarkMode)
 }
 
-function DeleteBook(index) {
-  console.log("test");
+function DeleteBook(book) {
+  myLibrary.splice(book.id - booksDeleted++, 1);
+  console.log(myLibrary.length);
+  libraryGridContainer.removeChild(book.HtmlNode);
+}
+
+function ToggleReadBook(book) {
+  book.hasRead = !book.hasRead;
+  book.readIconNode.src = `img/sticker-check${book.hasRead ? "" : "-outline"}.svg`;
 }
 
 

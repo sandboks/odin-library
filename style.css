@@ -436,7 +436,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 
 .bottomSectionProjectsPanelCloseButton {
     height: 0;
-    position: absolute;
+    position: relative;
 }
 
 .bottomSectionProjectsPanel p {
@@ -451,11 +451,18 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 .bottomSectionProjectsPanelIcons img, .bottomSectionProjectsPanelCloseButton img {
     width: 24px;
     height: 24px;
+    cursor: pointer;
     /*
     background-color: var(--main-color-light);
     border-radius: 50%;
     padding: 2px;
     */
+}
+
+.bottomSectionProjectsPanelCloseButton img {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
 }
 
 .bottomSectionRight {
