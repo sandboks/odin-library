@@ -15,8 +15,38 @@
     <dialog id="addNewBookDialog">
         <button autofocus>Close</button>
         <h1>Add new book</h1>
-        <p>This modal dialog has a groovy backdrop!</p>
+        <form method="dialog" id="addNewBookForm">
+            <p>
+                <label>
+                    Title:
+                    <input type="text" name="title" minlength="1" required>
+                </label>
+            </p>
+            <p>
+                <label>
+                    Author:
+                    <input type="text" name="author" required>
+                </label>    
+            </p>
+            <p>
+                <label>
+                    Total pages:
+                    <input type="number" name="pageCount" required>
+                </label>
+            </p>
+            <p>
+                <label>
+                    Have read:
+                    <input type="checkbox" name="haveRead">
+                </label>    
+            </p>
+        </form>
+        <button id="createNewBookButton">Create</button>
+    </dialog>
 
+    <dialog id="EditBookDialog">
+        <button autofocus>Close</button>
+        <h1>Edit book</h1>
         <form method="dialog">
             <p>
                 <label>
@@ -43,7 +73,7 @@
                 </label>    
             </p>
         </form>
-        <button id="submitButton" value="default">Submit</button>
+        <button id="saveChangesButton">Save changes</button>
     </dialog>
 
 

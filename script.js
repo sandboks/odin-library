@@ -3,6 +3,7 @@
 const myLibrary = [];
 var booksMade = 0;
 var booksDeleted = 0;
+var bookCurrentlyEditing = null;
 
 function Book(title, author, pageCount, hasRead) {
   this.title = title;
@@ -41,28 +42,32 @@ testButton.addEventListener("click", () => {
 
 // DOM manipulation
 
-// DIALOG
-const dialog = document.getElementById("addNewBookDialog");
+// CREATE BOOK DIALOG
+const createDialog = document.getElementById("addNewBookDialog");
 const showButton = document.getElementById("addNewBookOpenDialog");
 const closeButton = document.querySelector("dialog button");
-const submitButton = document.getElementById("submitButton");
+const createNewBookButton = document.getElementById("createNewBookButton");
 
 // "Show the dialog" button opens the dialog modally
 showButton.addEventListener("click", () => {
-  dialog.showModal();
+  createDialog.showModal();
 });
 
 // "Close" button closes the dialog
 closeButton.addEventListener("click", () => {
-  dialog.close();
+  createDialog.close();
 });
 
-submitButton.addEventListener("click", (event) => {
+createNewBookButton.addEventListener("click", (event) => {
   //event.preventDefault(); // We don't want to submit this fake form
-  let inputs = document.querySelectorAll('input');
-  addBookToLibrary(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].checked);
+  //let inputs = document.querySelectorAll('input');
+  const inputs = document.getElementById("addNewBookForm").elements;
+  addBookToLibrary(inputs["title"].value, inputs["author"].value, inputs["pageCount"].value, inputs["haveRead"].checked);
 
-  dialog.close();
+  inputs["title"].value = "";
+  inputs["author"].value = "";
+  inputs["pageCount"].value = "";
+  inputs["haveRead"].checked = false;
 });
 
 // INSERT NEW HTML
@@ -82,8 +87,6 @@ function insertNewBookHTML(book) {
   closeButtonImg.classList.add("panelCloseButton");
   closeButtonImg.addEventListener("click", () => {
     DeleteBook(book);
-    //console.log("hello");
-    //libraryGridContainer.removeChild(newPanelDiv);
   });
 
   closeButtonDiv.appendChild(closeButtonImg);
@@ -103,6 +106,9 @@ function insertNewBookHTML(book) {
   panelBottomIcons.classList.add("bottomSectionProjectsPanelIcons");
   var editIcon = document.createElement('img');
   editIcon.src = "img/text-box-edit-outline.svg";
+  editIcon.addEventListener('click', () => {
+    EditBookStart(book);
+  });
 
   var readIcon = document.createElement('img');
   book.readIconNode = readIcon;
@@ -156,6 +162,11 @@ function DeleteBook(book) {
 function ToggleReadBook(book) {
   book.hasRead = !book.hasRead;
   book.readIconNode.src = `img/sticker-check${book.hasRead ? "" : "-outline"}.svg`;
+}
+
+function EditBookStart(book) {
+  bookCurrentlyEditing = book;
+  // open dialogue
 }
 
 
