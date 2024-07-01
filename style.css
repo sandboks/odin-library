@@ -61,21 +61,7 @@ body {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 1em;
-}
-
-input[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-
-    border-radius: var(--border-radius);
-    background-color: var(--main-color-light);
-    padding-left: 1em;
-    margin: 0;
-}
+} margin: 0;
 
 .topBannerHeaderDark input[type=text] {
     background-color: var(--bg-darkmode2);
@@ -170,7 +156,7 @@ input[type=text] {
     cursor: pointer;
 }
 
-.topBannerMainRight button {
+button {
     padding: 12px 24px;
     border-radius: 1.5em;
     border: 0px;
@@ -316,4 +302,70 @@ h2 {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+/* MODAL DIALOG */
+
+dialog {
+    border: none !important;
+    border-radius: 1em;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 25px -12px rgba(0, 0, 0, 0.25);
+    padding: 1.5em;
+}
+
+.formInputSection {
+    gap: 1em;
+    display: flex;
+    flex-direction: column;;
+}
+
+label {
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+
+}
+
+form div {
+    display: flex;
+}
+
+/*
+dialog input {
+    font-size: 100%;
+    border-radius: 4px;
+    padding: 4px 8px;
+    border: 1px solid gray;
+    color: black;
+}
+*/
+
+input { /*[type=text]*/
+    float: right;
+    padding: 6px;
+    border: none;
+    font-size: 17px;
+
+    border-radius: var(--border-radius);
+    background-color: var(--main-color-light);
+    padding-left: 1em;
+
+    width: 250px;
+}
+
+#dialogHeaderText {
+    text-align: center;
+    margin: 0;
+}
+
+.addNewBookDialogDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.addNewBookDialogDiv button {
+    width: 100%;
+    padding-top: 1em;
 }
