@@ -14,7 +14,7 @@
 <body>
     <dialog id="addNewBookDialog">
         <button autofocus>Close</button>
-        <h1>Add new book</h1>
+        <h1 id="dialogHeaderText">Add new book</h1>
         <form method="dialog" id="addNewBookForm">
             <p>
                 <label>
@@ -31,13 +31,13 @@
             <p>
                 <label>
                     Total pages:
-                    <input type="number" name="pageCount" required>
+                    <input type="number" name="pageCount" min="1" required>
                 </label>
             </p>
             <p>
                 <label>
                     Have read:
-                    <input type="checkbox" name="haveRead">
+                    <input type="checkbox" name="hasRead">
                 </label>    
             </p>
         </form>

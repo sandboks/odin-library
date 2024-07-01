@@ -21,6 +21,13 @@ function Book(title, author, pageCount, hasRead) {
 }
 
 function addBookToLibrary(title, author, pageCount, hasRead) {
+  if (title.length == 0)
+    title = "[NO TITLE]";
+  if (author.length == 0)
+    author = "[NO AUTHOR]";
+  if (pageCount == '' || pageCount < 0)
+    pageCount = 0;
+  
   let book = new Book(title, author, pageCount, hasRead);
   book.id = booksMade++;
   myLibrary.push(book);
@@ -28,10 +35,6 @@ function addBookToLibrary(title, author, pageCount, hasRead) {
 
   //book.info();
 }
-
-myLibrary.forEach((book) => {
-  book.info();
-});
 
 // BUTTON LISTERNERS
 
@@ -47,14 +50,29 @@ const createDialog = document.getElementById("addNewBookDialog");
 const showButton = document.getElementById("addNewBookOpenDialog");
 const closeButton = document.querySelector("dialog button");
 const createNewBookButton = document.getElementById("createNewBookButton");
+const dialogHeaderText = document.getElementById("dialogHeaderText");
 
 // "Show the dialog" button opens the dialog modally
 showButton.addEventListener("click", () => {
-  createDialog.showModal();
+  ShowDialogModal();
 });
+
+function ShowDialogModal() {
+  dialogHeaderText.textContent = (bookCurrentlyEditing == null) ? "Add new book" : "Edit book";
+  createNewBookButton.textContent = (bookCurrentlyEditing == null) ? "Create" : "Save changes";
+
+  const inputs = document.getElementById("addNewBookForm").elements;
+  inputs["title"].value = (bookCurrentlyEditing == null) ? "" : bookCurrentlyEditing.title;
+  inputs["author"].value = (bookCurrentlyEditing == null) ? "" : bookCurrentlyEditing.author;
+  inputs["pageCount"].value = (bookCurrentlyEditing == null) ? "" : bookCurrentlyEditing.pageCount;
+  inputs["hasRead"].checked = (bookCurrentlyEditing == null) ? false : bookCurrentlyEditing.hasRead;
+  
+  createDialog.showModal();
+}
 
 // "Close" button closes the dialog
 closeButton.addEventListener("click", () => {
+  bookCurrentlyEditing = null;
   createDialog.close();
 });
 
@@ -62,12 +80,23 @@ createNewBookButton.addEventListener("click", (event) => {
   //event.preventDefault(); // We don't want to submit this fake form
   //let inputs = document.querySelectorAll('input');
   const inputs = document.getElementById("addNewBookForm").elements;
-  addBookToLibrary(inputs["title"].value, inputs["author"].value, inputs["pageCount"].value, inputs["haveRead"].checked);
 
-  inputs["title"].value = "";
-  inputs["author"].value = "";
-  inputs["pageCount"].value = "";
-  inputs["haveRead"].checked = false;
+  if (bookCurrentlyEditing == null) {
+    addBookToLibrary(inputs["title"].value, inputs["author"].value, inputs["pageCount"].value, inputs["hasRead"].checked);
+
+    inputs["title"].value = "";
+    inputs["author"].value = "";
+    inputs["pageCount"].value = "";
+    inputs["hasRead"].checked = false;
+  }
+  else {
+    bookCurrentlyEditing.title = inputs["title"].value;
+    bookCurrentlyEditing.author = inputs["author"].value;
+    bookCurrentlyEditing.pageCount = inputs["pageCount"].value;
+    bookCurrentlyEditing.hasRead = inputs["hasRead"].checked;
+    UpdateBookDisplay(bookCurrentlyEditing);
+  }
+  
 });
 
 // INSERT NEW HTML
@@ -78,6 +107,18 @@ function insertNewBookHTML(book) {
   var newPanelDiv = document.createElement('div');
   book.HtmlNode = newPanelDiv;
   newPanelDiv.classList.add(`bottomSectionProjectsPanel`);
+
+  libraryGridContainer.appendChild(newPanelDiv);
+  UpdateBookDisplay(book);
+}
+
+function UpdateBookDisplay(book) {
+  var newPanelDiv = book.HtmlNode;
+  // start by deleting whatever's already there
+  while (newPanelDiv.firstChild) {
+    newPanelDiv.removeChild(newPanelDiv.lastChild);
+  }
+
 
   var closeButtonDiv = document.createElement('div');
   closeButtonDiv.classList.add('bottomSectionProjectsPanelCloseButton');
@@ -124,33 +165,6 @@ function insertNewBookHTML(book) {
 
   newPanelDiv.appendChild(closeButtonDiv);
   newPanelDiv.appendChild(panelContentDiv);
-
-  /*
-  newPanelDiv.innerHTML = 
-  `
-  <div class="bottomSectionProjectsPanelCloseButton">
-    <img src="img/close-circle-outline.svg" class="panelCloseButton">
-  </div>
-  <div class="bottomSectionProjectsPanelContent">
-    <h3>${book.title}</h3>
-      <h4>${book.author}</h4>
-      <p>${book.pageCount} pages</p>
-      <p>ID: ${book.id}</p>
-      <div class="bottomSectionProjectsPanelIcons">
-          <a href="https://sandboks.github.io/odin-calculator/">
-              <img src="img/cog.svg">
-          </a>
-          <a href="https://github.com/sandboks/odin-calculator">
-              <img src="img/star.svg">
-          </a>
-      </div>
-  </div>`;
-  */
-
-  libraryGridContainer.appendChild(newPanelDiv);
-  
-  //const darkModeSwitch = document.querySelector("#darkModeToggle");
-  //darkModeSwitch.addEventListener("click", ToggleDarkMode)
 }
 
 function DeleteBook(book) {
@@ -167,6 +181,7 @@ function ToggleReadBook(book) {
 function EditBookStart(book) {
   bookCurrentlyEditing = book;
   // open dialogue
+  ShowDialogModal();
 }
 
 
@@ -174,3 +189,7 @@ function EditBookStart(book) {
 
 addBookToLibrary("The Hoobbit", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("Harry Pooter", "some biggot", 1111, false);
+
+myLibrary.forEach((book) => {
+  book.info();
+});
