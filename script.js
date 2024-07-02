@@ -193,8 +193,10 @@ function EditBookStart(book) {
 
 
 
-addBookToLibrary("The Hoobbit", "J.R.R. Tolkien", 295, true);
-addBookToLibrary("Harry Pooter", "some biggot", 1111, false);
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
+addBookToLibrary("Twilight", "Stephenie Meyer", 544, false);
+addBookToLibrary("1984", "George Orwell", 328, false);
+addBookToLibrary("Pounded In The Butt By My Handsome Sentient Library Card Who Seems Otherworldly But In Reality Is Just A Natural Part Of The Priceless Resources Our Library System Provides", "Chuck Tingle", 48, false);
 
 myLibrary.forEach((book) => {
   book.info();
