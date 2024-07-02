@@ -13,22 +13,21 @@
 </head>
 <body>
     <dialog id="addNewBookDialog">
+        <div class="closeButtonDiv">
+            <img src="img/close-circle-outline.svg" id="panelCloseButton">
+        </div>
         <div class="addNewBookDialogDiv">
-            <button autofocus>Close</button>
             <h1 id="dialogHeaderText">Add new book</h1>
             <form method="dialog" id="addNewBookForm">
                 <div class="formInputSection">
                     <div>
-                        <label>Title:</label>
-                        <input type="text" name="title" minlength="1" required>
+                        <input type="text" name="title" placeholder="Title">
                     </div>
                     <div>
-                        <label>Author:</label>
-                        <input type="text" name="author" required>    
+                        <input type="text" name="author" placeholder="Author">    
                     </div>
                     <div>
-                        <label>Total pages:</label>
-                        <input type="number" name="pageCount" min="1" required>
+                        <input type="number" name="pageCount" min="1" placeholder="Total pages">
                     </div>
                     <div>
                         <label>Have read:</label>

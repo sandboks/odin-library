@@ -258,11 +258,6 @@ button {
     gap: 1em;
 }
 
-.bottomSectionProjectsPanelCloseButton {
-    height: 0;
-    position: relative;
-}
-
 .bottomSectionProjectsPanel p {
     margin: 0.5em 0;
     overflow: hidden;
@@ -272,18 +267,26 @@ button {
     margin: 0.5em 0;
 }
 
-.bottomSectionProjectsPanelIcons img, .bottomSectionProjectsPanelCloseButton img {
+.bottomSectionProjectsPanelIcons img, .closeButtonDiv img {
     width: 24px;
     height: 24px;
     cursor: pointer;
-    /*
-    background-color: var(--main-color-light);
-    border-radius: 50%;
-    padding: 2px;
-    */
 }
 
-.bottomSectionProjectsPanelCloseButton img {
+.closeButtonDiv {
+    height: 0;
+    position: relative;
+}
+
+dialog .closeButtonDiv {
+    /*
+    position: inherit;
+    */
+    top: -1.5em;
+    right: -1.5em;
+}
+
+.closeButtonDiv img {
     position: absolute;
     top: 0.5em;
     right: 0.5em;
@@ -340,13 +343,13 @@ dialog input {
 }
 */
 
-input { /*[type=text]*/
+input[type="text" i], input[type="number" i] { /*[type=text]*/
     float: right;
-    padding: 6px;
+    padding: 1em;
     border: none;
     font-size: 17px;
 
-    border-radius: var(--border-radius);
+    border-radius: calc(var(--border-radius)/2);
     background-color: var(--main-color-light);
     padding-left: 1em;
 
@@ -366,6 +369,20 @@ input { /*[type=text]*/
 }
 
 .addNewBookDialogDiv button {
-    width: 100%;
+    width: 60%;
     padding-top: 1em;
+}
+
+dialog {
+    border: none !important;
+    border-radius: 1em;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 10px -12px rgba(0, 0, 0, 0.25);
+    padding: 1.5em;
+    overflow: visible;
+}
+
+dialog:-internal-dialog-in-top-layer::backdrop {
+    position: fixed;
+    inset: 0px;
+    background: rgba(0, 0, 0, 0.3);
 }

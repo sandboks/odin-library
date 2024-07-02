@@ -48,7 +48,7 @@ testButton.addEventListener("click", () => {
 // CREATE BOOK DIALOG
 const createDialog = document.getElementById("addNewBookDialog");
 const showButton = document.getElementById("addNewBookOpenDialog");
-const closeButton = document.querySelector("dialog button");
+const closeButton = document.getElementById("panelCloseButton");
 const createNewBookButton = document.getElementById("createNewBookButton");
 const dialogHeaderText = document.getElementById("dialogHeaderText");
 
@@ -121,7 +121,7 @@ function UpdateBookDisplay(book) {
 
 
   var closeButtonDiv = document.createElement('div');
-  closeButtonDiv.classList.add('bottomSectionProjectsPanelCloseButton');
+  closeButtonDiv.classList.add('closeButtonDiv');
 
   var closeButtonImg = document.createElement("img");
   closeButtonImg.src = "img/close-circle-outline.svg";
