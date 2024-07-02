@@ -4,6 +4,7 @@
 ;
     --main-color-selection: #ffffff36;
     --main-color-projects: #e3e8ee;
+    --main-color-projects-darker: #caced3;
     --main-color-light: rgb(238, 238, 238);
 
     --bg-darkmode: #3a3f47;
@@ -214,16 +215,32 @@ button {
 
 .bottomSectionProjectsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, 350px);
     gap: var(--padding-amount);
 }
 
-.bottomSectionProjectsPanel {
+.bottomSectionProjectsPanel, .AddNewBookPanelButton {
     background-color: white;
     border-radius: var(--border-radius);
     overflow: hidden;
 
     box-shadow: 5px 5px 5px #00000021;
+}
+
+.AddNewBookPanelButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--main-color-projects-darker);
+    box-shadow: 0 0 0 black;
+    min-height: 198px;
+
+    cursor: pointer;
+}
+
+.AddNewBookPanelButton h1 {
+    margin: 0;
 }
 
 .bottomSectionProjectsPanelDark {
@@ -236,15 +253,9 @@ button {
     padding: 1.5em;
 
     height: 150px;
-    /*
-    max-height: 120px;
-    overflow: hidden;
-    */
 
     border-left-color: var(--border-highlight-color);
     border-left-width: 1em;
-    /* border-left: 100px black; */
-    /* border-style: solid; */
     border-left-style: solid;
 }
 
@@ -332,16 +343,6 @@ label {
 form div {
     display: flex;
 }
-
-/*
-dialog input {
-    font-size: 100%;
-    border-radius: 4px;
-    padding: 4px 8px;
-    border: 1px solid gray;
-    color: black;
-}
-*/
 
 input[type="text" i], input[type="number" i] { /*[type=text]*/
     float: right;

@@ -47,7 +47,7 @@ testButton.addEventListener("click", () => {
 
 // CREATE BOOK DIALOG
 const createDialog = document.getElementById("addNewBookDialog");
-const showButton = document.getElementById("addNewBookOpenDialog");
+const showButton = document.querySelector(".AddNewBookPanelButton");
 const closeButton = document.getElementById("panelCloseButton");
 const createNewBookButton = document.getElementById("createNewBookButton");
 const dialogHeaderText = document.getElementById("dialogHeaderText");
@@ -72,9 +72,13 @@ function ShowDialogModal() {
 
 // "Close" button closes the dialog
 closeButton.addEventListener("click", () => {
+  CloseDialog();
+});
+
+function CloseDialog() {
   bookCurrentlyEditing = null;
   createDialog.close();
-});
+}
 
 createNewBookButton.addEventListener("click", (event) => {
   //event.preventDefault(); // We don't want to submit this fake form
@@ -95,6 +99,8 @@ createNewBookButton.addEventListener("click", (event) => {
     bookCurrentlyEditing.pageCount = inputs["pageCount"].value;
     bookCurrentlyEditing.hasRead = inputs["hasRead"].checked;
     UpdateBookDisplay(bookCurrentlyEditing);
+
+    CloseDialog();
   }
   
 });
