@@ -344,6 +344,11 @@ label {
 
 form div {
     display: flex;
+    flex-basis: 100%;
+}
+
+.SideBySide {
+    gap: 1em;
 }
 
 input[type="text" i], input[type="number" i] { /*[type=text]*/
@@ -356,7 +361,7 @@ input[type="text" i], input[type="number" i] { /*[type=text]*/
     background-color: var(--main-color-light);
     padding-left: 1em;
 
-    width: 250px;
+    width: 100%;
 }
 
 #dialogHeaderText {

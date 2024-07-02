@@ -21,19 +21,22 @@ function Book(title, author, pageCount, hasRead) {
 }
 
 function addBookToLibrary(title, author, pageCount, hasRead) {
-  if (title.length == 0)
-    title = "[NO TITLE]";
-  if (author.length == 0)
-    author = "[NO AUTHOR]";
-  if (pageCount == '' || pageCount < 0)
-    pageCount = 0;
-  
   let book = new Book(title, author, pageCount, hasRead);
+  ValidateBook(book);
   book.id = booksMade++;
   myLibrary.push(book);
   insertNewBookHTML(book);
 
   //book.info();
+}
+
+function ValidateBook(book) {
+  if (book.title.length == 0)
+    book.title = "[NO TITLE]";
+  if (book.author.length == 0)
+    book.author = "[NO AUTHOR]";
+  if (book.pageCount == '' || book.pageCount < 0)
+    book.pageCount = 0;
 }
 
 // BUTTON LISTERNERS
@@ -98,6 +101,7 @@ createNewBookButton.addEventListener("click", (event) => {
     bookCurrentlyEditing.author = inputs["author"].value;
     bookCurrentlyEditing.pageCount = inputs["pageCount"].value;
     bookCurrentlyEditing.hasRead = inputs["hasRead"].checked;
+    ValidateBook(bookCurrentlyEditing);
     UpdateBookDisplay(bookCurrentlyEditing);
 
     CloseDialog();
