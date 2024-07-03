@@ -5,6 +5,9 @@ var booksMade = 0;
 var booksDeleted = 0;
 var bookCurrentlyEditing = null;
 
+
+const inputs = document.getElementById("addNewBookForm").elements;
+
 function Book(title, author, pageCount, hasRead) {
   this.title = title;
   this.author = author;
@@ -54,6 +57,7 @@ const showButton = document.querySelector(".AddNewBookPanelButton");
 const closeButton = document.getElementById("panelCloseButton");
 const createNewBookButton = document.getElementById("createNewBookButton");
 const dialogHeaderText = document.getElementById("dialogHeaderText");
+const toggleButtonText = document.querySelector(".toggleButtonText");
 
 // "Show the dialog" button opens the dialog modally
 showButton.addEventListener("click", () => {
@@ -64,11 +68,12 @@ function ShowDialogModal() {
   dialogHeaderText.textContent = (bookCurrentlyEditing == null) ? "Add new book" : "Edit book";
   createNewBookButton.textContent = (bookCurrentlyEditing == null) ? "Create" : "Save changes";
 
-  const inputs = document.getElementById("addNewBookForm").elements;
   inputs["title"].value = (bookCurrentlyEditing == null) ? "" : bookCurrentlyEditing.title;
   inputs["author"].value = (bookCurrentlyEditing == null) ? "" : bookCurrentlyEditing.author;
   inputs["pageCount"].value = (bookCurrentlyEditing == null) ? "" : bookCurrentlyEditing.pageCount;
   inputs["hasRead"].checked = (bookCurrentlyEditing == null) ? false : bookCurrentlyEditing.hasRead;
+  //toggleButtonText.textContent = (inputs["hasRead"].checked) ? "Read" : "Unread";
+  UpdateReadToggleText();
   
   createDialog.showModal();
 }
@@ -83,6 +88,17 @@ function CloseDialog() {
   createDialog.close();
 }
 
+toggleButtonText.addEventListener("click", () => {
+  UpdateReadToggleText(true);
+});
+
+function UpdateReadToggleText(reversed = false) {
+  if (reversed)
+    toggleButtonText.textContent = (!inputs["hasRead"].checked) ? "Read" : "Unread";
+  else
+    toggleButtonText.textContent = (inputs["hasRead"].checked) ? "Read" : "Unread";
+}
+
 createNewBookButton.addEventListener("click", (event) => {
   //event.preventDefault(); // We don't want to submit this fake form
   //let inputs = document.querySelectorAll('input');
@@ -95,6 +111,8 @@ createNewBookButton.addEventListener("click", (event) => {
     inputs["author"].value = "";
     inputs["pageCount"].value = "";
     inputs["hasRead"].checked = false;
+
+    ShowDialogModal();
   }
   else {
     bookCurrentlyEditing.title = inputs["title"].value;
