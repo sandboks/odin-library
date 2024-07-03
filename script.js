@@ -65,7 +65,7 @@ showButton.addEventListener("click", () => {
 });
 
 function ShowDialogModal() {
-  dialogHeaderText.textContent = (bookCurrentlyEditing == null) ? "Add new book" : "Edit book";
+  dialogHeaderText.textContent = (bookCurrentlyEditing == null) ? "New" : "Edit";
   createNewBookButton.textContent = (bookCurrentlyEditing == null) ? "Create" : "Save changes";
 
   inputs["title"].value = (bookCurrentlyEditing == null) ? "" : bookCurrentlyEditing.title;
@@ -196,7 +196,6 @@ function UpdateBookDisplay(book) {
 
 function DeleteBook(book) {
   myLibrary.splice(book.id - booksDeleted++, 1);
-  console.log(myLibrary.length);
   libraryGridContainer.removeChild(book.HtmlNode);
 }
 
@@ -218,7 +217,3 @@ addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("Twilight", "Stephenie Meyer", 544, false);
 addBookToLibrary("1984", "George Orwell", 328, false);
 addBookToLibrary("Pounded In The Butt By My Handsome Sentient Library Card Who Seems Otherworldly But In Reality Is Just A Natural Part Of The Priceless Resources Our Library System Provides", "Chuck Tingle", 48, false);
-
-myLibrary.forEach((book) => {
-  book.info();
-});
