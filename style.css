@@ -354,8 +354,20 @@ a {
 dialog {
     border: none !important;
     border-radius: 1em;
-    box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 25px -12px rgba(0, 0, 0, 0.25);
     padding: 1.5em;
+}
+
+dialog {
+    border: none !important;
+    border-radius: 1em;
+    padding: 1.5em;
+    overflow: visible;
+}
+
+dialog:-internal-dialog-in-top-layer::backdrop {
+    position: fixed;
+    inset: 0px;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .formInputSection {
@@ -409,20 +421,6 @@ input[type="text" i], input[type="number" i] { /*[type=text]*/
 .addNewBookDialogDiv button {
     width: 60%;
     padding-top: 1em;
-}
-
-dialog {
-    border: none !important;
-    border-radius: 1em;
-    box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 10px -12px rgba(0, 0, 0, 0.25);
-    padding: 1.5em;
-    overflow: visible;
-}
-
-dialog:-internal-dialog-in-top-layer::backdrop {
-    position: fixed;
-    inset: 0px;
-    background: rgba(0, 0, 0, 0.3);
 }
 
 /*

@@ -213,4 +213,4 @@ function EditBookStart(book) {
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("Twilight", "Stephenie Meyer", 544, false);
 addBookToLibrary("1984", "George Orwell", 328, false);
-addBookToLibrary("Pounded In The Butt By My Handsome Sentient Library Card Who Seems Otherworldly But In Reality Is Just A Natural Part Of The Priceless Resources Our Library System Provides", "Chuck Tingle", 48, false);
+addBookToLibrary("On the Origin of Species by Means of Natural Selection, or the Preservation of Favoured Races in the Struggle for Life", "Charles Darwin", 502, false);
