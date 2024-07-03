@@ -44,11 +44,6 @@ function ValidateBook(book) {
 
 // BUTTON LISTERNERS
 
-const testButton = document.getElementById("testThing");
-testButton.addEventListener("click", () => {
-  addBookToLibrary("TITLE", "AUTHOR", 1, false);
-});
-
 // DOM manipulation
 
 // CREATE BOOK DIALOG
@@ -153,7 +148,7 @@ function UpdateBookDisplay(book) {
 
   var closeButtonImg = document.createElement("img");
   closeButtonImg.src = "img/close-circle-outline.svg";
-  closeButtonImg.classList.add("panelCloseButton");
+  closeButtonImg.classList.add("buttonImage");
   closeButtonImg.addEventListener("click", () => {
     DeleteBook(book);
   });
@@ -173,6 +168,7 @@ function UpdateBookDisplay(book) {
   var panelBottomIcons = document.createElement(`div`);
   panelBottomIcons.classList.add("bottomSectionProjectsPanelIcons");
   var editIcon = document.createElement('img');
+  editIcon.classList.add("buttonImage");
   editIcon.src = "img/text-box-edit-outline.svg";
   editIcon.addEventListener('click', () => {
     EditBookStart(book);
@@ -180,6 +176,7 @@ function UpdateBookDisplay(book) {
 
   var readIcon = document.createElement('img');
   book.readIconNode = readIcon;
+  readIcon.classList.add("buttonImage");
   readIcon.src = `img/sticker-check${book.hasRead ? "" : "-outline"}.svg`;
   readIcon.addEventListener('click', () => {
     ToggleReadBook(book);
