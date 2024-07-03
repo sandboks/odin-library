@@ -149,7 +149,6 @@ function UpdateBookDisplay(book) {
   <h3>${book.title}</h3>
   <h4>${book.author}</h4>
   <p>${book.pageCount} pages</p>
-  <p>ID: ${book.id}</p>
   `;
 
 
