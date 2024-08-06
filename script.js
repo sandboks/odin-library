@@ -8,17 +8,20 @@ var bookCurrentlyEditing = null;
 
 const inputs = document.getElementById("addNewBookForm").elements;
 
-function Book(title, author, pageCount, hasRead) {
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  this.hasRead = hasRead;
+class Book {
+  constructor(title, author, pageCount, hasRead) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.hasRead = hasRead;
 
-  this.id = 0;
-  this.HtmlNode;
-  this.readIconNode;
+    this.id = 0;
+  }
 
-  this.info = function() {
+  HtmlNode;
+  readIconNode;
+  
+  info() {
     console.log(`${this.title} by ${this.author}, ${this.pageCount}, ${this.hasRead ? "has read" : "has not read"}`);
   }
 }
